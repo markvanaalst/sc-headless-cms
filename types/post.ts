@@ -1,5 +1,3 @@
-import { TypedObject } from "@portabletext/types";
-
 import Author from "./author";
 import Media from "./media";
 
