@@ -1,6 +1,8 @@
-type Author = {
-  name: string
-  picture: string
-}
+import Media from "./media";
 
-export default Author
+type Author = {
+  name: string;
+  picture: Media;
+};
+
+export default Author;

@@ -1,33 +1,54 @@
 import Author from "../types/author";
+import Media from "../types/media";
 import PostType from "../types/post";
-import { BlogAuthor, Blogpost, BlogpostsResult } from "../types/sitecore";
+import { Asset, BlogAuthor, Blogpost, BlogpostsResult } from "../types/sitecore";
 
 const POST_GRAPHQL_FIELDS = `
-    __typename
-    total
+__typename
+total
+results {
+  id
+  Title: title
+  Abstract: abstract
+  Body: body
+  PublishDate: publishdate
+  CoverImage: coverImage {
     results {
-      id
-      Title: title
-      Abstract: abstract
-      Body: body
-      PublishDate: publishDate
-      #CoverImage: coverImage
-      Author: author {
-        results {
-          ... on MvaAuthor {
-            Name: fullName
-            ProfilePictureUrl: profilePictureUrl
-          }
-        }
-      }
-      Categories: categories {
-        results {
-          ... on MvaCategory {
-            Name: categoryName
+            fileId
+            ... on Media {
+              Url: fileUrl
+              Name: fileName
+              Width:fileWidth
+              Height: fileHeight
+            }
+          }}
+  Author: author {
+    results {
+      ... on Author {
+        Name: fullname
+        ProfilePictureUrl: profilepicture {
+          total
+          results {
+            fileId
+            ... on Media {
+              Url: fileUrl
+              Name: fileName
+              Width:fileWidth
+              Height: fileHeight
+            }
           }
         }
       }
     }
+  }
+  Categories: categories {
+    results {
+      ... on Category {
+        Name: categoryName
+      }
+    }
+  }
+}
 `;
 
 async function fetchAPI(query: string) {
@@ -44,7 +65,7 @@ async function fetchAPI(query: string) {
 export async function getAllPosts(preview: boolean): Promise<PostType[]> {
   const data = await fetchAPI(
     `{ 
-      data: allMvaBlogpost
+      data: allBlogpost
       {
         ${POST_GRAPHQL_FIELDS}
       }
@@ -56,7 +77,7 @@ export async function getAllPosts(preview: boolean): Promise<PostType[]> {
 export async function getAllPostsWithSlug(): Promise<PostType[]> {
   const data = await fetchAPI(
     `{ 
-      data: allMvaBlogpost(where: { id_neq : null } )
+      data: allBlogpost(where: { id_neq : null } )
       {
         ${POST_GRAPHQL_FIELDS}
       }
@@ -68,7 +89,7 @@ export async function getAllPostsWithSlug(): Promise<PostType[]> {
 export async function getPostBySlug(slug: string): Promise<PostType> {
   const data = await fetchAPI(
     `{ 
-      data: allMvaBlogpost(where: { id_eq: "${slug}" })
+      data: allBlogpost(where: { id_eq: "${slug}" })
       {
         ${POST_GRAPHQL_FIELDS}
       }
@@ -90,22 +111,31 @@ function extractPosts({ data }: { data: BlogpostsResult }) {
 function parseAuthor(author: BlogAuthor): Author {
   return {
     name: author.Name,
-    picture: author.ProfilePictureUrl,
+    picture: parseMedia(author.ProfilePictureUrl.results[0]),
   };
 }
 
 function parsePost(post: Blogpost): PostType {
+  console.log(post.Body);
   return {
     title: post.Title,
     slug: post.id,
     date: post.PublishDate.toString(),
     content: post.Body,
     excerpt: post.Abstract ? post.Abstract : "",
-    //coverImage: post.CoverImage,
-    coverImage: "https://picsum.photos/800/500",
+    coverImage: parseMedia(post.CoverImage.results[0]),
     author: parseAuthor(post.Author.results[0]),
     ogImage: {
       url: "",
     },
+  };
+}
+
+function parseMedia(asset: Asset): Media {
+  return {
+    Url: asset.Url,
+    Name: asset.Name,
+    Width: asset.Width,
+    Height: asset.Height,
   };
 }

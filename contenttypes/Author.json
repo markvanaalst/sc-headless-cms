@@ -1,0 +1,56 @@
+{
+    "id": "author",
+    "name": {
+      "en-US": "Author"
+    },
+    "description": {
+      "en-US": "Author content type to be used with blogposts"
+    },
+    "fields": [
+      {
+        "id": "fullname",
+        "limitation": null,
+        "name": {
+          "en-US": "fullName"
+        },
+        "type": "ShortText",
+        "required": true,
+        "helpText": {
+          "en-US": ""
+        }
+      },
+      {
+        "id": "profilepicture",
+        "limitation": null,
+        "name": {
+          "en-US": "ProfilePicture"
+        },
+        "type": "Media",
+        "required": false,
+        "helpText": {
+          "en-US": ""
+        }
+      }
+    ],
+    "system": {
+      "type": "ContentType",
+      "version": "1",
+      "status": null,
+      "createdBy": {
+        "type": "Link",
+        "relatedType": "User",
+        "id": "mva@sitecore.net",
+        "uri": "http://content-api.sitecorecloud.io/api/users/mva@sitecore.net"
+      },
+      "createdAt": "2022-11-18T09:48:02.7832476Z",
+      "updatedBy": {
+        "type": "Link",
+        "relatedType": "User",
+        "id": "mva@sitecore.net",
+        "uri": "http://content-api.sitecorecloud.io/api/users/mva@sitecore.net"
+      },
+      "updatedAt": "2022-11-18T09:54:59.0093652Z",
+      "publishedBy": null,
+      "publishedAt": null
+    }
+  }

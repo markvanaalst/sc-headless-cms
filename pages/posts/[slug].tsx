@@ -5,12 +5,11 @@ import PostBody from "../../components/post-body";
 import Header from "../../components/header";
 import PostHeader from "../../components/post-header";
 import Layout from "../../components/layout";
-import { getPostBySlug, getAllPosts, getAllPostsWithSlug } from "../../lib/api";
+import { getPostBySlug, getAllPostsWithSlug } from "../../lib/api";
 import PostTitle from "../../components/post-title";
 import Head from "next/head";
 import { CMS_NAME } from "../../lib/constants";
 import PostType from "../../types/post";
-import { Blogpost } from "../../types/sitecore";
 
 type Props = {
   post: PostType;
@@ -38,7 +37,7 @@ const Post = ({ post, morePosts, preview }: Props) => {
                 </title>
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
-              <PostHeader title={post.title} coverImage={post.coverImage} date={post.date} author={post.author} />
+              <PostHeader title={post.title} coverImage={post.coverImage.Url} date={post.date} author={post.author} />
               <PostBody content={post.content} />
             </article>
           </>

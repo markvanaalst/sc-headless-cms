@@ -6,7 +6,24 @@ export type Blogpost = {
   Author: AuthorResults;
   Categories: CategoryResults;
   PublishDate: Date;
-  CoverImage: string;
+  CoverImage: AssetResults;
+};
+
+//export type RichText = {
+//  type: string;
+//  content: TypedObject[];
+//};
+
+export type Asset = {
+  Url: string;
+  Name: string;
+  Width: string;
+  Height: string;
+};
+
+export type AssetResults = {
+  total: string;
+  results: Asset[];
 };
 
 export type BlogpostsResult = {
@@ -27,5 +44,5 @@ export type AuthorResults = {
 
 export type BlogAuthor = {
   Name: string;
-  ProfilePictureUrl: string;
+  ProfilePictureUrl: AssetResults;
 };

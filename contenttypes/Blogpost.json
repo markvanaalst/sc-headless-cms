@@ -1,0 +1,120 @@
+{
+    "id": "blogpost",
+    "name": {
+      "en-US": "Blogpost"
+    },
+    "description": {
+      "en-US": "Example content type for blogposts"
+    },
+    "fields": [
+      {
+        "id": "title",
+        "limitation": null,
+        "name": {
+          "en-US": "Title"
+        },
+        "type": "ShortText",
+        "required": true,
+        "helpText": {
+          "en-US": ""
+        }
+      },
+      {
+        "id": "publishdate",
+        "name": {
+          "en-US": "Publish Date"
+        },
+        "type": "DateTime",
+        "required": false,
+        "helpText": {
+          "en-US": ""
+        }
+      },
+      {
+        "id": "coverImage",
+        "limitation": null,
+        "name": {
+          "en-US": "CoverImage"
+        },
+        "type": "Media",
+        "required": false,
+        "helpText": {
+          "en-US": ""
+        }
+      },
+      {
+        "id": "body",
+        "name": {
+          "en-US": "Body"
+        },
+        "type": "RichText",
+        "required": true,
+        "helpText": {
+          "en-US": ""
+        }
+      },
+      {
+        "id": "abstract",
+        "limitation": null,
+        "name": {
+          "en-US": "Abstract"
+        },
+        "type": "LongText",
+        "required": true,
+        "helpText": {
+          "en-US": ""
+        }
+      },
+      {
+        "id": "author",
+        "limitation": null,
+        "referenceTypesRestrict": [
+          "author"
+        ],
+        "name": {
+          "en-US": "Author"
+        },
+        "type": "Reference",
+        "required": false,
+        "helpText": {
+          "en-US": ""
+        }
+      },
+      {
+        "id": "categories",
+        "limitation": null,
+        "referenceTypesRestrict": [
+          "category"
+        ],
+        "name": {
+          "en-US": "Categories"
+        },
+        "type": "Reference",
+        "required": false,
+        "helpText": {
+          "en-US": ""
+        }
+      }
+    ],
+    "system": {
+      "type": "ContentType",
+      "version": "1",
+      "status": null,
+      "createdBy": {
+        "type": "Link",
+        "relatedType": "User",
+        "id": "mva@sitecore.net",
+        "uri": "http://content-api.sitecorecloud.io/api/users/mva@sitecore.net"
+      },
+      "createdAt": "2022-11-18T09:47:13.4529949Z",
+      "updatedBy": {
+        "type": "Link",
+        "relatedType": "User",
+        "id": "mva@sitecore.net",
+        "uri": "http://content-api.sitecorecloud.io/api/users/mva@sitecore.net"
+      },
+      "updatedAt": "2022-11-18T09:58:50.4720691Z",
+      "publishedBy": null,
+      "publishedAt": null
+    }
+  }
