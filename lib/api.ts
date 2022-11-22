@@ -116,6 +116,7 @@ function parseAuthor(author: BlogAuthor): Author {
 }
 
 function parsePost(post: Blogpost): PostType {
+  console.log(post.Body);
   return {
     title: post.Title,
     slug: post.id,

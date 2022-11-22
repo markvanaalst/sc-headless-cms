@@ -1,8 +1,9 @@
+import { JSONContent } from "@tiptap/core";
 export type Blogpost = {
   id: string;
   Title: string;
   Abstract?: string;
-  Body: string;
+  Body: JSONContent;
   Author: AuthorResults;
   Categories: CategoryResults;
   PublishDate: Date;

@@ -1,3 +1,4 @@
+import { JSONContent } from "@tiptap/core";
 import Author from "./author";
 import Media from "./media";
 
@@ -11,7 +12,7 @@ type PostType = {
   ogImage: {
     url: string;
   };
-  content: string;
+  content: JSONContent;
 };
 
 export default PostType;
