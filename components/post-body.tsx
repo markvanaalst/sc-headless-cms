@@ -8,9 +8,7 @@ type Props = {
 };
 
 const PostBody = ({ content }: Props) => {
-  const output = useMemo(() => {
-    return generateHTML(content, [richTextProfile]);
-  }, [content]);
+  const output = generateHTML(content, [richTextProfile]);
 
   return (
     <div className="max-w-2xl mx-auto">
